@@ -6,18 +6,17 @@ The goal for this project is for you to learn though experience, to learn teamwo
 Finally, you are to show the instructor what you have learned through this project.
 Plus ... it's just fun to be turned loose and be creative with all you have learned and then some!
 
-| Topics                                  | Date          | Grading   |
-| --------------------------------------- | ------------- | --------- |
-| Project Introduction                    | January 30    |           |
-| Ideas Presentation                      | February 3    | S/N       |
-| Groups Announced                        | February 5    |           |
-| Proposal & _CATME Survey_               | February 12   | S/N       |
-| Specifications & _CATME Survey_         | February 19   | S/N       |
-| Check In & _CATME Survey_               | February 26   | S/N       |
-| TA Code Review & _CATME Survey_         | March 4       | S/N       |
-| Group Code Review & _CATME Survey_      | March 9, 10   | S/N       |
-| Project Implementation & _CATME Survey_ | March 16      | EMRN      |
-| Presentation and Demonstration          | Final Period  | EMRN      |
+| Topics                                  | Date             | Grading   |
+| --------------------------------------- | ---------------- | --------- |
+| Project Introduction                    | Week 4 Thrusday  |           |
+| Elevator Speech                         | Week 4 Thrusday  | EMRN      |
+| Groups Announced                        | Week 4 Thrusday  |           |
+| Proposal & _CATME Survey_               | Week 7 Monday    | S/N       |
+| Specifications & _CATME Survey_         | Week 7 Thrusday  | S/N       |
+| Check In & _CATME Survey_               | Week 8 Thrusday  | EMRN      |
+| SDC or TA Code Review & _CATME Survey_  | Week 9 or 10     | EMRN      |
+| Project Implementation & _CATME Survey_ | Final Period     | EMRN      |
+| Presentation and Demonstration          | Final Period     | EMRN      |
 
 This is intended to be a group project (3-4 persons).
 
