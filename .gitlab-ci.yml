@@ -1,0 +1,24 @@
+---
+image: "python:3.7"
+
+before_script:
+  - apt install -qqy gcc
+  - python --version
+  - pip install -r requirements.txt
+
+stages:
+  - Static Analysis
+
+codespell:
+  stage: Static Analysis
+  script:
+    - codespell -f
+
+clang-format:
+  stage: Static Analysis
+  image: ubuntu:latest
+  before_script:
+    - apt update
+    - apt install -qqy clang-format
+  script:
+    - ./.gitlab/format.sh
