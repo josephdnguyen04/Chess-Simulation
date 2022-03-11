@@ -84,7 +84,7 @@ During class, each group will give a short status update on their project.
 ### TA Code Review
 
 In the TA Code Review, similar to previous projects, you will be presenting your code to a TA, SDC tutor or the instructor.
-They will give you feedback for you to incorporate into your next verison of the project.
+They will give you feedback for you to incorporate into your next version of the project.
 
 ### Group Code Review
 
