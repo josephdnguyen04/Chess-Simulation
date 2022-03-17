@@ -1,10 +1,10 @@
-/*************************************************************************
- *
+/**
  * Project III: Start here.
- *
- * File Name:       main.cpp
- * Name(s):         ?
- * Course:          CPTR 142
- * Date:            ?
- *
  */
+#include "library.h"
+#include <iostream>
+
+int main() {
+  // Sample program
+  std::cout << helloWorld() << std::endl;
+}

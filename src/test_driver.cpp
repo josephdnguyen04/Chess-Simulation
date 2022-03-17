@@ -1,10 +1,12 @@
-/*************************************************************************
- *
+/**
  * Project III: Start testing here.
- *
- * File Name:       test_driver.cpp
- * Name(s):         ?
- * Course:          CPTR 142
- * Date:            ?
- *
  */
+#include "library.h"
+#include <assert.h>
+#include <string>
+
+int main() {
+  // Sample test
+  std::string actual = helloWorld();
+  assert(actual == "Hello World!");
+}
