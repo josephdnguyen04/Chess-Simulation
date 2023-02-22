@@ -1,10 +1,10 @@
-SRCS = src/library.cpp
+SRCS = Piece_Class.cpp chess_bot_board.cpp
 EXE = a.out
 SUBMITTY_CXXFLAGS = -I.
 
 ifeq ($(DRIVER),)
 	# Code.CS student settings (default)
-	SRCS += src/main.cpp
+	SRCS += chess_bot_main.cpp
 else
 	# Alternate driver supplied (likely for testing)
 	SRCS += $(DRIVER)
