@@ -3,33 +3,60 @@
 int main() {
   vector<vector<string>> board = makeBoard();
   int numPlayers = 2;
+  char playerColor = 'n';
   int turn = 0;
   int victory = 0;
   string p1 = "Player 1";
   string p2 = "Player 2";
 
   cout << "Welcome to Chess." << endl;
-  /* right now, we will default to 2 players unless we program computer moves
   cout << "How many players are there? ";
   cin >> numPlayers;
-  while (!(numPlayers == 0 || numPlayers == 1 || numPlayers == 2)) {
-    cout << "Sorry, " << numPlayers << " is an invalid number of players."
-         << endl;
+  while (!(numPlayers == 0 || numPlayers == 1 || numPlayers == 2) ||
+         !cin.good()) {
+    cout << "Sorry, that is an invalid number of players." << endl;
     cout << "Please enter an integer from 0 to 2." << endl;
     cout << "How many players are there? ";
+    cin.clear();
+    cin.ignore(10000, '\n');
     cin >> numPlayers;
   }
-*/
-  while (0/*!checkEndGame(board) && turn <= 10*/) { //debug, there should be no turn limit
-    turn++;
-    takeTurn(board, "white");
-    takeTurn(board, "black");
-    printBoard(board);
+  if (numPlayers == 1) {
+    do {
+      string temp;
+      cout << "Do you want to be white or black? ";
+      cin >> temp;
+      playerColor = static_cast<char>(tolower(temp.at(0)));
+
+    } while (playerColor != 'w' && playerColor != 'b');
+    if (playerColor == 'w') {
+      p2 = "Computer";
+    } else if (playerColor == 'b') {
+      p1 = "Computer";
+    }
   }
- victory = checkEndGame(board);
+
+  while (!victory && turn <= 10) { // debug, no turn limit
+    turn++;
+    if (p1 != "Computer") {
+      // takeTurn(board, "white");
+    } else {
+      // comTurn(board, "white");
+    }
+    // printBoard(board);
+
+    if (p2 != "Computer") {
+      // takeTurn(board, "black");
+    } else {
+      // comTurn(board, "black");
+    }
+    // printBoard(board);
+  }
+
+  victory = checkEndGame(board);
   switch (victory) {
   case 0:
-    cout << "Error: game finished too early." << endl;
+    cout << "The game stopped before it finished." << endl;
     break;
   case 1:
     cout << p1 << " won!" << endl;
