@@ -23,12 +23,14 @@ int main() {
   }
   if (numPlayers == 1) {
     do {
+      cin.clear();
+      cin.ignore(10000, '\n');
       string temp;
       cout << "Do you want to be white or black? ";
       cin >> temp;
       playerColor = static_cast<char>(tolower(temp.at(0)));
 
-    } while (playerColor != 'w' && playerColor != 'b');
+    } while ((playerColor != 'w' && playerColor != 'b') || !cin.good());
     if (playerColor == 'w') {
       p2 = "Computer";
     } else if (playerColor == 'b') {
@@ -38,21 +40,21 @@ int main() {
 
   while (!victory && turn <= 10) { // debug, no turn limit
     turn++;
-    if (p1 != "Computer") {
-      // takeTurn(board, "white");
-    } else {
+    // printBoard(board);
+    if (p1 == "Computer") {
       // comTurn(board, "white");
-    }
-    // printBoard(board);
-
-    if (p2 != "Computer") {
-      // takeTurn(board, "black");
     } else {
-      // comTurn(board, "black");
+      // takeTurn(board, "white");
     }
-    // printBoard(board);
-  }
 
+    // printBoard(board);
+    if (p2 == "Computer") {
+      // comTurn(board, "black");
+    } else {
+      // takeTurn(board, "black");
+    }
+  }
+  // printBoard(board);
   victory = checkEndGame(board);
   switch (victory) {
   case 0:
