@@ -12,7 +12,7 @@ bool team;
 public:
     ChessPieces(bool color) {team = color;};
 
-    std::vector<std::tuple<int,int>> move(std::tuple<int> current_cell, std::vector<string> current_board) 
+    std::vector<std::tuple<int,int>> move(std::tuple<int> current_cell, std::vector<std::vector<string>> current_board) 
     {
         std::vector<std::tuple<int,int>> moves;
         moves.push_back(std::make_tuple(0,0));
