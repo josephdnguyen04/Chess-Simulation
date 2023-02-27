@@ -8,7 +8,7 @@ int main() {
     for (int i = 0; i < 8; i++) {
     vector<string> row;
     for (int j = 0; j < 8; j++) {
-      row.push_back("  ");
+      row.push_back("__");
     }
     board.push_back(row);
   }
