@@ -1,4 +1,6 @@
 #include "chess_bot_header.h"
+// Potentially Helpful Link For the Project
+// https://iopscience.iop.org/article/10.1088/1742-6596/1195/1/012013/pdf
 
 int main() {
   vector<vector<string>> board = makeBoard();
