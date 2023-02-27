@@ -6,7 +6,7 @@ vector<vector<string>> makeBoard() {
   for (int i = 0; i < 8; i++) {
     vector<string> row;
     for (int j = 0; j < 8; j++) {
-      row.push_back("_");
+      row.push_back("  ");
     }
     board.push_back(row);
   }
