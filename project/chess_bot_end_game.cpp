@@ -4,8 +4,8 @@ int checkEndGame(const vector<vector<string>> &board) {
   bool p1K = 0;
   bool p2K = 0;
   int victory = 0;
-  for (int i = 0; i < board.size(); i++) { // find if each player has a king
-    for (int j = 0; j < board.at(i).size(); j++) {
+  for (unsigned int i = 0; i < board.size(); i++) { // find if each player has a king
+    for (unsigned int j = 0; j < board.at(i).size(); j++) {
       if (board.at(i).at(j) == "wK") {
         p1K = 1;
       }

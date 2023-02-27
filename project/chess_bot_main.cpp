@@ -42,14 +42,14 @@ int main() {
 
   while (!victory && turn <= 10) { // debug, no turn limit
     turn++;
-    // printBoard(board);
+    printBoard(board);
     if (p1 == "Computer") {
       // comTurn(board, "white");
     } else {
       // takeTurn(board, "white");
     }
 
-    // printBoard(board);
+    //printBoard(board);
     if (p2 == "Computer") {
       // comTurn(board, "black");
     } else {

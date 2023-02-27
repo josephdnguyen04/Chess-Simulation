@@ -16,15 +16,15 @@ vector<vector<string>> makeBoard();
 // vector by reference to edit that board. The second parameter is for the color
 // of piece to move, either "white" or "black". It should prompt the player for
 // a move and then move accordingly.
-void takeTurn(vector<vector<string>> &board, string color);
+void takeTurn(vector<vector<string>> &board, string color); //Keegan
 
 // comTurn() should be similar to takeTurn(), but the turn will be completed by
 // the computer.
-void comTurn(vector<vector<string>> &board, string color);
+void comTurn(vector<vector<string>> &board, string color); //no one should be working on this yet
 
 // printBoard() is a void function with the current chess board as a const
 // reference. It should cout ascii art to display the board.
-void printBoard(const vector<vector<string>> &board);
+void printBoard(const vector<vector<string>> &board); //Joseph
 
 // checkEndGame() is an integer function that returns integers based on the game
 // state. It takes the chess board vector as a const reference.
