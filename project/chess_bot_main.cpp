@@ -42,21 +42,28 @@ int main() {
 
   while (!victory && turn <= 10) { // debug, no turn limit
     turn++;
+    cout << endl << endl << "Turn: " << turn << endl << endl;
+    cout << "White to move:" << endl << endl;
     printBoard(board);
     if (p1 == "Computer") {
       // comTurn(board, "white");
     } else {
       // takeTurn(board, "white");
     }
-
-    //printBoard(board);
+    cout << endl;
+    cout << "Black to move:" << endl << endl;
+    printBoard(board);
     if (p2 == "Computer") {
       // comTurn(board, "black");
     } else {
       // takeTurn(board, "black");
     }
+    cout << "____________________________________" << endl;
   }
-  // printBoard(board);
+  
+  cout << endl << "Game over" << endl;
+  printBoard(board);
+  cout << endl;
   victory = checkEndGame(board);
   switch (victory) {
   case 0:
