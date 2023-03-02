@@ -16,7 +16,15 @@ vector<vector<string>> makeBoard();
 // vector by reference to edit that board. The second parameter is for the color
 // of piece to move, either "white" or "black". It should prompt the player for
 // a move and then move accordingly.
+// the definition is in chess_bot_turn.cpp 
+// THERE IS CURRENTLY AN ERROR WHERE MAIN DOES NOT LIKE THE FUNCTION.
 void takeTurn(vector<vector<string>> &board, string color); //Keegan
+
+// converts a string of 2 character, where the first is a MAYUS letter and the second character must be a number
+// it returns a tuple with the letter converted into a number where A = 0, B = 1 and so on.
+// it should be used to convert user input into rows and columns
+// the definition is in chess_bot_turn.cpp 
+tuple<int,int> convertInput(string input); 
 
 // comTurn() should be similar to takeTurn(), but the turn will be completed by
 // the computer.

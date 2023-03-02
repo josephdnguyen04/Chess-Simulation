@@ -2,9 +2,9 @@
 
 void printBoard(const vector<vector<string>> &board) {
     int num = 8;
-    for (int i  = 0; i < board.size(); i++, num--) {
+    for (unsigned int i  = 0; i < board.size(); i++, num--) {
         cout << num << " |";
-        for (int j = 0; j < board.at(i).size(); j++) {
+        for (unsigned int j = 0; j < board.at(i).size(); j++) {
             cout << board.at(i).at(j) << "|";
         }
         cout << endl;

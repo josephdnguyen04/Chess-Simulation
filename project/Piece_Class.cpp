@@ -1,74 +1,141 @@
-
+#include "Piece_Class.h"
 #include <iostream>
 #include <tuple>
 #include <vector>
-using std::string;
+using namespace std;
 
-class ChessPieces {
-private:
-  bool team;
+// DEFINITIONS FOR THE KNIGHT
 
-public:
-  ChessPieces(bool color) { team = color; };
+Knight::Knight(bool team) { this->team = team; };
 
-  std::vector<std::tuple<int, int>>
-  move(std::tuple<int> current_cell,
-       std::vector<std::vector<string>> current_board) {
-    std::vector<std::tuple<int, int>> moves;
-    moves.push_back(std::make_tuple(0, 0));
-    moves.push_back(std::make_tuple(0, 7));
-    moves.push_back(std::make_tuple(7, 0));
-    moves.push_back(std::make_tuple(7, 7));
-    moves.push_back(std::make_tuple(4, 0));
-    moves.push_back(std::make_tuple(4, 7));
-    moves.push_back(std::make_tuple(3, 0));
-    moves.push_back(std::make_tuple(3, 7));
-    return moves;
+vector<tuple<int, int>> Knight::possibleMoves(vector<vector<string>> board,
+                                              tuple<int, int> current_cell) {
+  vector<tuple<int, int>> moves;
+  int row = get<0>(current_cell);
+  int col = get<1>(current_cell);
+
+  return moves;
+}
+
+// DEFINITIONS FOR THE ROOK
+
+Rook::Rook(bool team) { this->team = team; };
+
+vector<tuple<int, int>> Rook::possibleMoves(vector<vector<string>> board,
+                                            tuple<int, int> current_cell) {
+  vector<tuple<int, int>> moves;
+  int row = get<0>(current_cell);
+  int col = get<1>(current_cell);
+  int array[3] = {-1, 0, 1};
+
+  for (auto aa : array) {
+    for (auto bb : array) {
+      if (aa == bb || aa + bb == 0)
+        continue;
+      int x = row + aa;
+      int y = col + bb;
+
+      while ((0 <= x) && (x >= 7) && (0 <= y) && (y <= 7)) {
+        // IMPLEMENT ERROR CHECKING
+        moves.push_back(make_tuple(x, y));
+        x += aa;
+        y += bb;
+      }
+    }
   }
-};
 
-class Pawn : public ChessPieces {
-private:
-  string name = "pawn";
+  return moves;
+}
 
-public:
-  Pawn(bool team);
-};
-// Pawn::Pawn(bool team) {
-//     super(team);
-// }
+// DEFINITIONS FOR THE BISHOP
 
-class Knight : public ChessPieces {
-private:
-  string name = "knight";
+Bishop::Bishop(bool team) { this->team = team; };
 
-public:
-};
+std::vector<std::tuple<int, int>>
+Bishop::possibleMoves(std::vector<std::vector<string>> board,
+                      std::tuple<int, int> current_cell) {
+  vector<tuple<int, int>> moves;
+  int row = get<0>(current_cell);
+  int col = get<1>(current_cell);
+  int array[2] = {-1, 1};
 
-class Bishop : public ChessPieces {
-private:
-  string name = "bishop";
+  for (int aa : array) {
+    for (int bb : array) {
+      int x = row + aa;
+      int y = col + bb;
 
-public:
-};
+      while ((0 <= x) && (x >= 7) && (0 <= y) && (y <= 7)) {
+        // CHECK FOR ERRORS
+        moves.push_back(make_tuple(x, y));
+        x += aa;
+        y += bb;
+      }
+    }
+  }
+  return moves;
+}
 
-class Queen : public ChessPieces {
-private:
-  string name = "queen";
+// DEFINITIONS FOR THE QUEEN
 
-public:
-};
+Queen::Queen(bool team) { this->team = team; };
 
-class King : public ChessPieces {
-private:
-  string name = "king";
+std::vector<std::tuple<int, int>>
+Queen::possibleMoves(std::vector<std::vector<string>> board,
+                     std::tuple<int, int> current_cell) {
+  vector<tuple<int, int>> moves;
+  int row = get<0>(current_cell);
+  int col = get<1>(current_cell);
+  int array[3] = {-1, 0, 1};
 
-public:
-};
+  for (auto aa : array) {
+    for (auto bb : array) {
+      if (aa == bb)
+        continue;
+      int x = row + aa;
+      int y = col + bb;
 
-class Rook : public ChessPieces {
-private:
-  string name = "rook";
+      while ((0 <= x) && (x >= 7) && (0 <= y) && (y <= 7)) {
+        // IMPLEMENT ERROR CHECKING
+        moves.push_back(make_tuple(x, y));
+        x += aa;
+        y += bb;
+      }
+    }
+  }
 
-public:
-};
+  return moves;
+}
+
+// DEFINITIONS FOR THE KING
+
+King::King(bool team) { this->team = team; };
+
+std::vector<std::tuple<int, int>>
+King::possibleMoves(std::vector<std::vector<string>> board,
+                    std::tuple<int, int> current_cell) {
+  vector<tuple<int, int>> moves;
+  int row = get<0>(current_cell);
+  int col = get<1>(current_cell);
+  int array[3] = {-1, 0, 1};
+
+  for (auto aa : array) {
+    for (auto bb : array) {
+      if (aa == bb)
+        continue;
+      int x = row + aa;
+      int y = col + bb;
+      for (int i = 0; i <= 1; i++) {
+        if ((0 <= x) && (x >= 7) && (0 <= y) && (y <= 7)) {
+          // IMPLEMENT ERROR CHECKING
+          moves.push_back(make_tuple(x, y));
+        }
+      }
+    }
+  }
+
+  return moves;
+}
+
+// DEFINITIONS FOR THE PAWN
+
+Pawn::Pawn(bool team) { this->team = team; };

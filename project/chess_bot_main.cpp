@@ -49,6 +49,7 @@ int main() {
       // comTurn(board, "white");
     } else {
       // takeTurn(board, "white");
+
     }
     cout << endl;
     cout << "Black to move:" << endl << endl;
