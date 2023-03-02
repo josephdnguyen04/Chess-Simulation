@@ -94,8 +94,8 @@ moveRequest(iOld, jOld, iNew, jNew);
   // moves the piece from the inital position to the final, while setting the
   // initial position to empty ("  ")
   tuple <int, int> initial, finale;
-  initial = make_tuple(jOld,iOld);
-  finale = make_tuple(jNew, iNew);
+  initial = make_tuple(jOld + 1,iOld - 1);
+  finale = make_tuple(jNew + 1, iNew - 1);
   string piece = board.at(get<0>(initial)).at(get<1>(initial));
   board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
   board.at(get<0>(finale)).at(get<1>(finale)) = piece;
