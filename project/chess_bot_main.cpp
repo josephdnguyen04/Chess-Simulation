@@ -46,9 +46,9 @@ int main() {
     cout << "White to move:" << endl << endl;
     printBoard(board);
     if (p1 == "Computer") {
-      // comTurn(board, "white");
+    //comTurn(board, "white");
     } else {
-      // takeTurn(board, "white");
+      takeTurn(board, "white");
 
     }
     cout << endl;
@@ -57,7 +57,7 @@ int main() {
     if (p2 == "Computer") {
       // comTurn(board, "black");
     } else {
-      // takeTurn(board, "black");
+      takeTurn(board, "black");
     }
     cout << "____________________________________" << endl;
   }

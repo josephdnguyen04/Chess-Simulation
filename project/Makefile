@@ -1,4 +1,4 @@
-SRCS = Piece_Class.cpp chess_bot_board.cpp chess_bot_end_game.cpp chess_bot_print_board.cpp
+SRCS = Piece_Class.cpp chess_bot_board.cpp chess_bot_end_game.cpp chess_bot_print_board.cpp chess_bot_turn.cpp
 EXE = a.out
 SUBMITTY_CXXFLAGS = -I.
 
