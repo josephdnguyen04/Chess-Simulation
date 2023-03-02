@@ -33,6 +33,7 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
     }
     cout << "What move would you like to make?" << endl;
     getline(cin, request);
+    //request.erase(remove(request.begin(), request.end(), 'A'), request.end());
     // check if valid
     // make sure there are at least four characters in request
     if (request.size() < 4) {
