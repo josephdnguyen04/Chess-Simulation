@@ -39,7 +39,7 @@ int main() {
       p1 = "Computer";
     }
   }
-
+cin.ignore(1000, '\n');
   while (!victory && turn <= 10) { // debug, no turn limit
     turn++;
     cout << endl << endl << "Turn: " << turn << endl << endl;
@@ -49,7 +49,10 @@ int main() {
     //comTurn(board, "white");
     } else {
       takeTurn(board, "white");
-
+    }
+    victory = checkEndGame(board);
+    if (victory) {
+        break;
     }
     cout << endl;
     cout << "Black to move:" << endl << endl;
@@ -59,6 +62,7 @@ int main() {
     } else {
       takeTurn(board, "black");
     }
+    victory = checkEndGame(board);
     cout << "____________________________________" << endl;
   }
   

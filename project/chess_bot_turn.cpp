@@ -1,9 +1,9 @@
 #include "chess_bot_header.h"
 #include <iostream>
+#include <limits.h>
 #include <string>
 #include <tuple>
 #include <vector>
-#include <limits.h>
 using namespace std;
 
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
@@ -27,12 +27,11 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
 void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
   string request;
   bool valid = 1;
-  cin.clear();
-  cin.ignore(INT_MAX, '\n');
   do {
     if (!valid) {
       cout << endl;
-      cout << "***Sorry, that was an invalid request. Please try again.***" << endl
+      cout << "***Sorry, that was an invalid request. Please try again.***"
+           << endl
            << endl;
     }
     cout << "What move would you like to make?" << endl;
@@ -65,8 +64,9 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
   iOld = static_cast<int>(request.at(1)) - 49;
   jNew = static_cast<int>(request.at(2)) - 97;
   iNew = static_cast<int>(request.at(3)) - 49;
+  cout << "(" << iOld << ", " << jOld << "), (" << iNew << ", " << jNew << ")"
+       << endl; // debug
 }
-
 
 tuple<int, int> convertInput(string input) {
   tuple<int, int> position;
@@ -79,23 +79,23 @@ tuple<int, int> convertInput(string input) {
 void takeTurn(vector<vector<string>> &board, string color) {
   // takes two inputs of a letter and a number being.
   // ex: "E5 F7"
-int iOld;
-int jOld;
-int iNew;
-int jNew;
-moveRequest(iOld, jOld, iNew, jNew);
- /*string one, two;
-  cout << "Please make a move.\n";
-  cin >> one >> two;
-  tuple<int, int> initial, finale;
-  initial = convertInput(one);
-  finale = convertInput(two);
-*/
+  int iOld;
+  int jOld;
+  int iNew;
+  int jNew;
+  moveRequest(iOld, jOld, iNew, jNew);
+  /*string one, two;
+   cout << "Please make a move.\n";
+   cin >> one >> two;
+   tuple<int, int> initial, finale;
+   initial = convertInput(one);
+   finale = convertInput(two);
+ */
   // moves the piece from the inital position to the final, while setting the
   // initial position to empty ("  ")
-  tuple <int, int> initial, finale;
-  initial = make_tuple(jOld + 1,iOld - 1);
-  finale = make_tuple(jNew + 1, iNew - 1);
+  tuple<int, int> initial, finale;
+  initial = make_tuple(iOld, jOld);
+  finale = make_tuple(iNew, jNew);
   string piece = board.at(get<0>(initial)).at(get<1>(initial));
   board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
   board.at(get<0>(finale)).at(get<1>(finale)) = piece;
