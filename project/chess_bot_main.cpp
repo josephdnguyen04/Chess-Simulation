@@ -39,33 +39,33 @@ int main() {
       p1 = "Computer";
     }
   }
-cin.ignore(1000, '\n');
+  cin.ignore(1000, '\n');
   while (!victory && turn <= 10) { // debug, no turn limit
     turn++;
     cout << endl << endl << "Turn: " << turn << endl << endl;
-    cout << "White to move:" << endl << endl;
     printBoard(board);
+    cout << "White to move: ";
     if (p1 == "Computer") {
-    //comTurn(board, "white");
+      comTurn(board, "white");
     } else {
       takeTurn(board, "white");
     }
     victory = checkEndGame(board);
     if (victory) {
-        break;
+      break;
     }
     cout << endl;
-    cout << "Black to move:" << endl << endl;
     printBoard(board);
+    cout << "Black to move: ";
     if (p2 == "Computer") {
-      // comTurn(board, "black");
+      comTurn(board, "black");
     } else {
       takeTurn(board, "black");
     }
     victory = checkEndGame(board);
     cout << "____________________________________" << endl;
   }
-  
+
   cout << endl << "Game over" << endl;
   printBoard(board);
   cout << endl;

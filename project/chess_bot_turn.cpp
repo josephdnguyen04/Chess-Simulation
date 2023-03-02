@@ -1,9 +1,6 @@
 #include "chess_bot_header.h"
-#include <iostream>
 #include <limits.h>
-#include <string>
 #include <tuple>
-#include <vector>
 using namespace std;
 
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
@@ -64,8 +61,6 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
   iOld = static_cast<int>(request.at(1)) - 49;
   jNew = static_cast<int>(request.at(2)) - 97;
   iNew = static_cast<int>(request.at(3)) - 49;
-  cout << "(" << iOld << ", " << jOld << "), (" << iNew << ", " << jNew << ")"
-       << endl; // debug
 }
 
 tuple<int, int> convertInput(string input) {
@@ -96,7 +91,39 @@ void takeTurn(vector<vector<string>> &board, string color) {
   tuple<int, int> initial, finale;
   initial = make_tuple(iOld, jOld);
   finale = make_tuple(iNew, jNew);
-  string piece = board.at(get<0>(initial)).at(get<1>(initial));
-  board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
-  board.at(get<0>(finale)).at(get<1>(finale)) = piece;
+  if (validMove(board, iOld, jOld, iNew, jNew, color)) {
+    string piece = board.at(get<0>(initial)).at(get<1>(initial));
+    board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
+    board.at(get<0>(finale)).at(get<1>(finale)) = piece;
+  } else {
+    cout << "That was not a legal move." << endl;
+  }
+}
+
+void comTurn(vector<vector<string>> &board, string color, unsigned int seed) {
+  srand(seed);
+  int iOld;
+  int jOld;
+  int iNew;
+  int jNew;
+  do {
+    iOld = rand() % 8;
+    jOld = rand() % 8;
+    iNew = rand() % 8;
+    jNew = rand() % 8;
+  } while (!validMove(board, iOld, jOld, iNew, jNew, color));
+
+  tuple<int, int> initial, finale;
+  initial = make_tuple(iOld, jOld);
+  finale = make_tuple(iNew, jNew);
+  if (validMove(board, iOld, jOld, iNew, jNew, color)) {
+    string piece = board.at(get<0>(initial)).at(get<1>(initial));
+    board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
+    board.at(get<0>(finale)).at(get<1>(finale)) = piece;
+    cout << "Computer played: " << static_cast<char>(jOld + 97)
+         << static_cast<char>(iOld + 49) << static_cast<char>(jNew + 97)
+         << static_cast<char>(iNew + 49) << endl;
+  } else {
+    cout << "That was not a legal move by the computer." << endl;
+  }
 }

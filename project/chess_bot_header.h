@@ -29,8 +29,8 @@ tuple<int, int> convertInput(string input);
 
 // comTurn() should be similar to takeTurn(), but the turn will be completed by
 // the computer.
-void comTurn(vector<vector<string>> &board,
-             string color); // no one should be working on this yet
+void comTurn(vector<vector<string>> &board, string color,
+             unsigned int seed = 1); // no one should be working on this yet
 
 // printBoard() is a void function with the current chess board as a const
 // reference. It should cout ascii art to display the board.
