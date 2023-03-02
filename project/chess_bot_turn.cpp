@@ -3,6 +3,7 @@
 #include <string>
 #include <tuple>
 #include <vector>
+#include <limits.h>
 using namespace std;
 
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
@@ -26,6 +27,8 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
 void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
   string request;
   bool valid = 1;
+  cin.clear();
+  cin.ignore(INT_MAX, '\n');
   do {
     if (!valid) {
       cout << endl;
