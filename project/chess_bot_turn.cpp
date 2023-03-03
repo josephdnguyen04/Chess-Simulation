@@ -120,8 +120,7 @@ void takeTurn(vector<vector<string>> &board, string color) {
   }
 }
 
-void comTurn(vector<vector<string>> &board, string color, unsigned int seed) {
-  srand(seed);
+void comTurn(vector<vector<string>> &board, string color) {
   int iOld;
   int jOld;
   int iNew;

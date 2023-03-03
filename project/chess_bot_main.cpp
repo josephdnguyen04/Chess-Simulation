@@ -4,14 +4,18 @@
 
 int main() {
   vector<vector<string>> board = makeBoard();
-  int numPlayers = 2;
-  char playerColor = 'n';
+  int numPlayers;
+  char playerColor = 'n'; // 'w' for white and 'b' for black
   int turn = 0;
-  int victory = 0;
+  int victory = 0; // 0 - running game; 1 - p1 won; 2 - p2 won; 3 - tie
   string p1 = "Player 1";
   string p2 = "Player 2";
+  bool visibleBoard = 0; // 0 for invisible board; 1 for visible board
+  srand(1);
 
   cout << "Welcome to Chess." << endl;
+
+  // get number of players
   cout << "How many players are there? ";
   cin >> numPlayers;
   while (!(numPlayers == 0 || numPlayers == 1 || numPlayers == 2) ||
@@ -23,11 +27,11 @@ int main() {
     cin.ignore(10000, '\n');
     cin >> numPlayers;
   }
-  if (numPlayers == 0) {
-      p1 = "Computer";
-      p2 = "Computer";
+  if (numPlayers == 0) { // 0 players; 2 computers
+    p1 = "Computer 1";
+    p2 = "Computer 2";
   }
-  if (numPlayers == 1) {
+  if (numPlayers == 1) { // 1 player; option of white or black
     do {
       cin.clear();
       cin.ignore(10000, '\n');
@@ -44,12 +48,17 @@ int main() {
     }
   }
   cin.ignore(1000, '\n');
-  while (!victory && turn <= 10) { // debug, no turn limit
+
+  // main turn loop
+  while (!victory && turn <= 1000) { // debug, no turn limit
     turn++;
-    cout << endl << endl << "Turn: " << turn << endl << endl;
-    printBoard(board);
-    cout << "White to move: ";
-    if (p1 == "Computer") {
+    cout << endl << "Turn: " << turn << endl; // print turn #
+    if (visibleBoard) {                       // print initial board
+      cout << endl;
+      printBoard(board);
+    }
+    cout << "White to move: "; // p1's turn
+    if (p1 == "Computer 1" || p1 == "Computer") {
       comTurn(board, "white");
     } else {
       takeTurn(board, "white");
@@ -58,10 +67,12 @@ int main() {
     if (victory) {
       break;
     }
-    cout << endl;
-    printBoard(board);
-    cout << "Black to move: ";
-    if (p2 == "Computer") {
+    if (visibleBoard) { // print board between turns
+      cout << endl;
+      printBoard(board);
+    };
+    cout << "Black to move: "; // p2's turn
+    if (p2 == "Computer 2" || p2 == "Computer") {
       comTurn(board, "black");
     } else {
       takeTurn(board, "black");
@@ -70,9 +81,12 @@ int main() {
     cout << "____________________________________" << endl;
   }
 
+  // end game stats
   cout << endl << "Game over" << endl;
-  printBoard(board);
-  cout << endl;
+  if (visibleBoard) { // final board
+    printBoard(board);
+    cout << endl;
+  }
   victory = checkEndGame(board);
   switch (victory) {
   case 0:
