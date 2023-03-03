@@ -23,6 +23,10 @@ int main() {
     cin.ignore(10000, '\n');
     cin >> numPlayers;
   }
+  if (numPlayers == 0) {
+      p1 = "Computer";
+      p2 = "Computer";
+  }
   if (numPlayers == 1) {
     do {
       cin.clear();
