@@ -33,7 +33,20 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
     }
     cout << "What move would you like to make?" << endl;
     getline(cin, request);
-    //request.erase(remove(request.begin(), request.end(), 'A'), request.end());
+    cout << "Before edit: " << request << endl; // debug
+    unsigned int stringIndex = 0;
+    while (stringIndex < request.size()) {
+      if ((!isalpha(request.at(stringIndex)) &&
+              !isdigit(request.at(stringIndex))) ||
+          tolower(request.at(stringIndex)) == 'x') {
+        cout << "i is: " << stringIndex
+             << ". value: " << request.at(stringIndex) << endl; // debug
+        request.erase(request.begin() + stringIndex);
+      } else {
+        stringIndex++;
+      }
+    }
+    cout << "After edit: " << request << endl; // debug
     // check if valid
     // make sure there are at least four characters in request
     if (request.size() < 4) {
