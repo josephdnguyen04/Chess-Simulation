@@ -1,4 +1,5 @@
 #include "chess_bot_header.h"
+#include "Piece_Class.h"
 #include <limits.h>
 #include <tuple>
 using namespace std;
@@ -27,6 +28,14 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
     valid = 0;
     return valid;
   }
+
+
+// other conditions. Just return 0 if it is an invalid move (or a 1 otherwise)
+//check king
+if (board.at(iOld).at(jOld).at(1) == 'K') {
+    King piece(color == "w") 
+}
+
 
   return valid;
 }

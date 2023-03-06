@@ -10,7 +10,7 @@ int main() {
   int victory = 0; // 0 - running game; 1 - p1 won; 2 - p2 won; 3 - tie
   string p1 = "Player 1";
   string p2 = "Player 2";
-  bool visibleBoard = 0; // 0 for invisible board; 1 for visible board
+  bool visibleBoard = 1; // 0 for invisible board; 1 for visible board
   srand(1);
 
   cout << "Welcome to Chess." << endl;
