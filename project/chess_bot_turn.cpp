@@ -1,5 +1,5 @@
-#include "chess_bot_header.h"
 #include "Piece_Class.h"
+#include "chess_bot_header.h"
 #include <limits.h>
 #include <tuple>
 using namespace std;
@@ -29,28 +29,28 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
     return valid;
   }
 
-
-// other conditions. Just return 0 if it is an invalid move (or a 1 otherwise)
-//check pieces
-if (board.at(iOld).at(jOld).at(1) == 'K') {
-    cout << "called king" << endl; //debug
-    King piece(color == "w"); 
-    vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+  // other conditions. Just return 0 if it is an invalid move (or a 1 otherwise)
+  // check pieces
+  if (board.at(iOld).at(jOld).at(1) == 'K') {
+    cout << "called king" << endl; // debug
+    King piece(color == "white");
+    vector<tuple<int, int>> list =
+        piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+    cout << list.size() << endl; //debug
     bool recognized = 0;
     for (int i = 0; i < list.size(); i++) {
-        if (list.at(i) == tuple<int, int>(iOld, jOld)) {
-            cout << "good move for a king" << endl; //debug
-            recognized += 1;
-        } else {
-            cout << "bad move for a king" << endl; //debug
-        }
+      if (list.at(i) == tuple<int, int>(iOld, jOld)) {
+        cout << "good move for a king" << endl; // debug
+        recognized += 1;
+      } else {
+        cout << "bad move for a king" << endl; // debug
+      }
     }
     valid = recognized;
     if (valid == 0) {
-        return 0;
+      return 0;
     }
-}
-
+  }
 
   return valid;
 }
