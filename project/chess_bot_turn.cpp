@@ -31,9 +31,24 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
 
 
 // other conditions. Just return 0 if it is an invalid move (or a 1 otherwise)
-//check king
+//check pieces
 if (board.at(iOld).at(jOld).at(1) == 'K') {
-    King piece(color == "w") 
+    cout << "called king" << endl; //debug
+    King piece(color == "w"); 
+    vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+    bool recognized = 0;
+    for (int i = 0; i < list.size(); i++) {
+        if (list.at(i) == tuple<int, int>(iOld, jOld)) {
+            cout << "good move for a king" << endl; //debug
+            recognized += 1;
+        } else {
+            cout << "bad move for a king" << endl; //debug
+        }
+    }
+    valid = recognized;
+    if (valid == 0) {
+        return 0;
+    }
 }
 
 
