@@ -38,7 +38,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
         piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
     cout << list.size() << endl; //debug
     bool recognized = 0;
-    for (int i = 0; i < list.size(); i++) {
+    for (unsigned int i = 0; i < list.size(); i++) {
       if (list.at(i) == tuple<int, int>(iOld, jOld)) {
         cout << "good move for a king" << endl; // debug
         recognized += 1;
