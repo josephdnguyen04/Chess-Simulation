@@ -31,26 +31,136 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
 
   // other conditions. Just return 0 if it is an invalid move (or a 1 otherwise)
   // check pieces
-  if (board.at(iOld).at(jOld).at(1) == 'K') {
-    cout << "called king" << endl; // debug
-    King piece("white");
-    vector<tuple<int, int>> list =
-        piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
-    cout << list.size() << endl; //debug
-    bool recognized = 0;
-    for (int i = 0; i < list.size(); i++) {
-      if (list.at(i) == tuple<int, int>(iNew, jNew)) {
-        cout << "good move for a king" << endl; // debug
-        recognized += 1;
-      } else {
-        cout << "bad move for a king" << endl; // debug
-      }
-    }
-    valid = recognized;
-    if (valid == 0) {
-      return 0;
-    }
+  switch(board.at(iOld).at(jOld).at(1)) {
+    case 'K': {
+        bool recognized;
+        cout << "called king" << endl; // debug
+        King piece(color);
+        vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+        for (unsigned int i = 0; i < list.size(); i++) {
+            if (list.at(i) == tuple<int, int>(iNew, jNew)) {
+                cout << "good move for a king" << endl; // debug
+                recognized += 1;
+            } else {
+                cout << "bad move for a king" << endl; // debug
+            }
+        }
+        valid = recognized;
+        if (valid == 0) {
+            return valid;
+        }
+    } break;
+    case 'Q': {
+        bool recognized;
+        cout << "called queen" << endl;
+        Queen piece(color);
+        vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+        for (unsigned int i = 0; i < list.size(); i++) {
+            if (list.at(i) == tuple<int, int>(iNew, jNew)) {
+                cout << "good move for a queen" << endl; // debug
+                recognized += 1;
+            } else {
+                cout << "bad move for a queen" << endl; // debug
+            }
+        }
+        valid = recognized;
+        if (valid == 0) {
+            return valid;
+        }
+    } break;
+    case 'R': {
+        bool recognized;
+        cout << "called rook" << endl;
+        Rook piece(color);
+        vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+        for (unsigned int i = 0; i < list.size(); i++) {
+            if (list.at(i) == tuple<int, int>(iNew, jNew)) {
+                cout << "good move for a rook" << endl; // debug
+                recognized += 1;
+            } else {
+                cout << "bad move for a rook" << endl; // debug
+            }
+        }
+        valid = recognized;
+        if (valid == 0) {
+            return valid;
+        }
+    } break;
+    case 'N': {
+        bool recognized;
+        cout << "called knight" << endl;
+        Knight piece(color);
+        vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+        for (unsigned int i = 0; i < list.size(); i++) {
+            if (list.at(i) == tuple<int, int>(iNew, jNew)) {
+                cout << "good move for a knight" << endl; // debug
+                recognized += 1;
+            } else {
+                cout << "bad move for a knight" << endl; // debug
+            }
+        }
+        valid = recognized;
+        if (valid == 0) {
+            return valid;
+        }
+    } break;
+    case 'B': {
+        bool recognized;
+        cout << "called bishop" << endl;
+        Bishop piece(color);
+        vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+        for (unsigned int i = 0; i < list.size(); i++) {
+            if (list.at(i) == tuple<int, int>(iNew, jNew)) {
+                cout << "good move for a bishop" << endl; // debug
+                recognized += 1;
+            } else {
+                cout << "bad move for a bishop" << endl; // debug
+            }
+        }
+        valid = recognized;
+        if (valid == 0) {
+            return valid;
+        }
+    } break;
+    case 'P': {
+        bool recognized;
+        cout << "called pawn" << endl;
+        Pawn piece(color);
+        vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+        for (unsigned int i = 0; i < list.size(); i++) {
+            if (list.at(i) == tuple<int, int>(iNew, jNew)) {
+                cout << "good move for a king" << endl; // debug
+                recognized += 1;
+            } else {
+                cout << "bad move for a king" << endl; // debug
+            }
+        }
+        valid = recognized;
+        if (valid == 0) {
+            return valid;
+        }
+    } break;
   }
+//   if (board.at(iOld).at(jOld).at(1) == 'K') {
+//     cout << "called king" << endl; // debug
+//     King piece("white");
+//     vector<tuple<int, int>> list =
+//         piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
+//     cout << list.size() << endl; //debug
+//     bool recognized = 0;
+//     for (unsigned int i = 0; i < list.size(); i++) {
+//       if (list.at(i) == tuple<int, int>(iNew, jNew)) {
+//         cout << "good move for a king" << endl; // debug
+//         recognized += 1;
+//       } else {
+//         cout << "bad move for a king" << endl; // debug
+//       }
+//     }
+//     valid = recognized;
+//     if (valid == 0) {
+//       return 0;
+//     }
+//   }
 
   return valid;
 }
