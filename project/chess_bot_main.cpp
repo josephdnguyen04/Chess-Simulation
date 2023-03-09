@@ -3,6 +3,7 @@
 // https://iopscience.iop.org/article/10.1088/1742-6596/1195/1/012013/pdf
 
 int main() {
+    cout << resetColor();
   vector<vector<string>> board = makeBoard();
   int numPlayers;
   char playerColor = 'n'; // 'w' for white and 'b' for black
@@ -104,6 +105,6 @@ int main() {
   default:
     cout << "Error: inocorrect ending" << endl;
   }
-
+cout << resetColor();
   return 0;
 }

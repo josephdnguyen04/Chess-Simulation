@@ -49,3 +49,14 @@ int checkEndGame(const vector<vector<string>> &board);
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
                int iNew, int jNew, string color = "neutral");
 
+// color functions
+string grey();
+string red();
+string green();
+string yellow();
+string blue();
+string purple();
+string lightBlue();
+string white();
+string resetColor();
+
