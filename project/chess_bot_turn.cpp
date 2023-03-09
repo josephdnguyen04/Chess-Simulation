@@ -181,7 +181,10 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
     if (!valid) {
       cout << endl;
       cout << "***Sorry, that was an invalid request. Please try again.***"
-           << endl
+           << endl;
+      cout << "Enter the coordinates of your starting square followed by the "
+              "coordinates of your target square (letter, number, letter, "
+              "number)"
            << endl;
     }
     cout << "What move would you like to make?" << endl;
