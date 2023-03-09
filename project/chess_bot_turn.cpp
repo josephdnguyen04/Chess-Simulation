@@ -7,18 +7,21 @@ using namespace std;
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
                int iNew, int jNew, string color) {
   bool valid = 1;
+  // nobody can move a piece from an empty space
+  if (board.at(iOld).at(jOld) == "  ") {
+    cout << "There was no piece there" << endl;
+    valid = 0;
+    return valid;
+  }
   // white cannot move anything but white pieces
   if (color == "white" && board.at(iOld).at(jOld).at(0) != 'w') {
+    cout << "That piece was not your color" << endl;
     valid = 0;
     return valid;
   }
   // black cannot move anything but black pieces
   if (color == "black" && board.at(iOld).at(jOld).at(0) != 'b') {
-    valid = 0;
-    return valid;
-  }
-  // nobody can move a piece from an empty space
-  if (board.at(iOld).at(jOld) == "  ") {
+    cout << "That piece was not your color" << endl;
     valid = 0;
     return valid;
   }
