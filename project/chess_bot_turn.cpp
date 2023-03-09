@@ -244,26 +244,25 @@ void takeTurn(vector<vector<string>> &board, string color) {
   int jOld;
   int iNew;
   int jNew;
-  moveRequest(iOld, jOld, iNew, jNew);
-  /*string one, two;
-   cout << "Please make a move.\n";
-   cin >> one >> two;
-   tuple<int, int> initial, finale;
-   initial = convertInput(one);
-   finale = convertInput(two);
- */
-  // moves the piece from the inital position to the final, while setting the
-  // initial position to empty ("  ")
-  tuple<int, int> initial, finale;
-  initial = make_tuple(iOld, jOld);
-  finale = make_tuple(iNew, jNew);
-  if (validMove(board, iOld, jOld, iNew, jNew, color)) {
-    string piece = board.at(get<0>(initial)).at(get<1>(initial));
-    board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
-    board.at(get<0>(finale)).at(get<1>(finale)) = piece;
-  } else {
-    cout << "That was not a legal move." << endl;
-  }
+  bool legalMove = 1;
+  do {
+    moveRequest(iOld, jOld, iNew, jNew);
+    // moves the piece from the inital position to the final, while setting the
+    // initial position to empty ("  ")
+    tuple<int, int> initial, finale;
+    initial = make_tuple(iOld, jOld);
+    finale = make_tuple(iNew, jNew);
+    legalMove = validMove(board, iOld, jOld, iNew, jNew, color);
+    if (legalMove) {
+      // moves the piece from the inital position to the final, while
+      // setting the initial position to empty ("  ")
+      string piece = board.at(get<0>(initial)).at(get<1>(initial));
+      board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
+      board.at(get<0>(finale)).at(get<1>(finale)) = piece;
+    } else {
+      cout << "That was not a legal move." << endl;
+    }
+  } while (!legalMove);
 }
 
 void comTurn(vector<vector<string>> &board, string color) {
