@@ -198,54 +198,57 @@ Pawn::possibleMoves(std::vector<std::vector<string>> board,
   vector<tuple<int, int>> moves;
   int row = get<0>(current_cell);
   int col = get<1>(current_cell);
-  int column_change[2] = {-1,1};
-
-
-  // PAWN CAN TAKE TO THE SIDES
-
-  for (auto i : column_change) {
-      if (team == "white"){
-          if (board.at(row+1).at(col+i) != "  "){
-              if (board.at(row+1).at(col+i).at(0) != team.at(0)){
-                  moves.push_back(make_tuple(row+1,col+i));
-              }
-          }
-      }else {
-          if (board.at(row-1).at(col+i) != "  "){
-              if (board.at(row-1).at(col+i).at(0) != team.at(0)){
-                  moves.push_back(make_tuple(row-1,col+i));
-              }
-          }
-      }
-  }
+  int column_change[2] = {-1, 1};
 
   // MOVES ONE TILE FOWARD
   if (team == "white") {
-      if (board.at(row+1).at(col) == "  "){
-          moves.push_back(make_tuple(row+1,col));
-      }
-  }else {
-      if (board.at(row-1).at(col) == "  "){
-          moves.push_back(make_tuple(row-1,col));
-      }
+    if (board.at(row + 1).at(col) == "  ") {
+      moves.push_back(make_tuple(row + 1, col));
+    }
+  } else {
+    if (board.at(row - 1).at(col) == "  ") {
+      moves.push_back(make_tuple(row - 1, col));
+    }
   }
 
   // IF FIRST MOVE THEN CAN MOVE TWICE
   if (team == "white") {
-        if (row == 1) {
-            if (board.at(row+1).at(col) == "  "){
-                if (board.at(row+2).at(col) == "  ") {
-                    moves.push_back(make_tuple(row+2,col));
-                }
-            }                    
+    if (row == 1) {
+      if (board.at(row + 1).at(col) == "  ") {
+        if (board.at(row + 2).at(col) == "  ") {
+          moves.push_back(make_tuple(row + 2, col));
         }
+      }
+    }
   } else {
-        if (row == 6) {
-            if (board.at(row-1).at(col) == "  ")
-                if (board.at(row-2).at(col) == "  ")
-                    moves.push_back(make_tuple(row-2,col));
-        }
+    if (row == 6) {
+      if (board.at(row - 1).at(col) == "  ")
+        if (board.at(row - 2).at(col) == "  ")
+          moves.push_back(make_tuple(row - 2, col));
+    }
   }
 
+  // PAWN CAN TAKE TO THE SIDES
+
+  for (auto i : column_change) {
+    if (team == "white") {
+      if (col + i != 8 && col + i != -1) {
+        if (board.at(row + 1).at(col + i) != "  ") {
+          if (board.at(row + 1).at(col + i).at(0) != team.at(0)) {
+            moves.push_back(make_tuple(row + 1, col + i));
+          }
+        }
+      }
+    } else {
+      if (col + i != 8 && col + i != -1) {
+        if (board.at(row - 1).at(col + i) != "  ") {
+          if (board.at(row - 1).at(col + i).at(0) != team.at(0)) {
+            moves.push_back(make_tuple(row - 1, col + i));
+          }
+        }
+      }
+    }
+  }
+  cout << moves.size() << "  size" << endl;
   return moves;
 }
