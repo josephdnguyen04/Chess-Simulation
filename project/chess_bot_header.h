@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 using namespace std;
 
 // makeBoard() returns the initial 2-d vector of chess with pieces (as strings)
