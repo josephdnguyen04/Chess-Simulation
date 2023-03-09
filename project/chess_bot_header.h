@@ -47,3 +47,4 @@ int checkEndGame(const vector<vector<string>> &board);
 // point and coordinates for the new point
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
                int iNew, int jNew, string color = "neutral");
+
