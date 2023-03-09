@@ -176,9 +176,10 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
 
 void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
   string request;
-  bool valid = 1;
+  bool valid = true;
   do {
     if (!valid) {
+      valid = true;
       cout << endl;
       cout << "***Sorry, that was an invalid request. Please try again.***"
            << endl;
@@ -202,7 +203,7 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
     // check if valid
     // make sure there are at least four characters in request
     if (request.size() < 4) {
-      valid = 0;
+      valid = false;
       continue;
     }
     // make sure that request is alpha-digit-alpha-digit
@@ -211,7 +212,7 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
       request.at(0) = tolower(request.at(0)); // ignore capitol letters
       request.at(2) = tolower(request.at(2));
     } else {
-      valid = 0;
+      valid = false;
       continue;
     }
     // make sure each character of request is in range of an 8x8 board
@@ -219,7 +220,7 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
         (request.at(2) < 'a') || (request.at(2) > 'h') ||
         (request.at(1) < '1') || (request.at(1) > '8') ||
         (request.at(3) < '1') || (request.at(3) > '8')) {
-      valid = 0;
+      valid = false;
       continue;
     }
   } while (!valid);
