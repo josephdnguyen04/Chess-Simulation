@@ -5,8 +5,7 @@
 using namespace std;
 
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
-               int iNew, int jNew, string color) {
-  bool debug = 1;
+               int iNew, int jNew, string color, bool debug) {
   bool valid = 1;
   // nobody can move a piece from an empty space
   if (board.at(iOld).at(jOld) == "  ") {
@@ -254,11 +253,56 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
     }
     case 2: {
       cout << "2 long" << endl; // debug
-      valid = false;
+      if (!(isalpha(request.at(0)) && isdigit(request.at(1)))) {
+        valid = false;
+        continue;
+      }
+      string start = request;
+      cout << "To which square would you like to move?" << endl;
+      getline(cin, request);
+      if (request.size() != 2) {
+        valid = false;
+        continue;
+      }
+      if (!(isalpha(request.at(0)) && isdigit(request.at(1)))) {
+        valid = false;
+        continue;
+      }
+      request = start + request;
+      cout << "request: " << request << endl; // debug
+      cout << request.size() << endl; //debug
       continue;
     }
     case 3: {
-      cout << "3 long" << endl; // debug
+      if (!(isalpha(request.at(0)) && isalpha(request.at(1)) &&
+            isdigit(request.at(2)))) {
+        valid = false;
+      }
+      if ((request.at(1) < 'a') || (request.at(1) > 'h') ||
+          (request.at(2) < '1') || (request.at(2) > '8')) {
+        valid = false;
+        continue;
+      }
+      switch (request.at(0)) {
+      case 'k':
+      case 'q':
+      case 'b':
+      case 'n':
+      case 'r':
+      case 'p': {
+        // debug I am not done with this yet, I was hoping to get a notation
+        // with three characters
+        valid = false;
+        continue;
+      }
+      default: {
+        valid = false;
+        continue;
+      }
+      }
+    }
+    case 5: {
+      cout << "5 long" << endl; // debug
       valid = false;
       continue;
     }
@@ -280,11 +324,6 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
         continue;
       }
       break;
-    }
-    case 5: {
-      cout << "5 long" << endl; // debug
-      valid = false;
-      continue;
     }
     default: {
       cout << "Too many characters" << endl; // debug
@@ -317,8 +356,8 @@ void takeTurn(vector<vector<string>> &board, string color) {
   bool legalMove = 1;
   do {
     moveRequest(iOld, jOld, iNew, jNew);
-    // moves the piece from the inital position to the final, while setting the
-    // initial position to empty ("  ")
+    // moves the piece from the inital position to the final, while setting
+    // the initial position to empty ("  ")
     tuple<int, int> initial, finale;
     initial = make_tuple(iOld, jOld);
     finale = make_tuple(iNew, jNew);
@@ -343,16 +382,17 @@ void comTurn(vector<vector<string>> &board, string color) {
     jOld = rand() % 8;
     iNew = rand() % 8;
     jNew = rand() % 8;
-  } while (!validMove(board, iOld, jOld, iNew, jNew, color));
+  } while (!validMove(board, iOld, jOld, iNew, jNew, color, 0));
 
   tuple<int, int> initial, finale;
   initial = make_tuple(iOld, jOld);
   finale = make_tuple(iNew, jNew);
-  if (validMove(board, iOld, jOld, iNew, jNew, color)) {
+  if (validMove(board, iOld, jOld, iNew, jNew, color, 0)) {
     string piece = board.at(get<0>(initial)).at(get<1>(initial));
     board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
     board.at(get<0>(finale)).at(get<1>(finale)) = piece;
-    cout << "Computer played: " << static_cast<char>(jOld + 97)
+    cout << "Computer " << ((color != "white") + 1)
+         << " played: " << static_cast<char>(jOld + 97)
          << static_cast<char>(iOld + 49) << static_cast<char>(jNew + 97)
          << static_cast<char>(iNew + 49) << endl;
   } else {
