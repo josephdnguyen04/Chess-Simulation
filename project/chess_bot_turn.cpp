@@ -131,23 +131,23 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
       return valid;
     }
   } break;
-    case 'P': {
-        bool recognized = 0;
-        cout << "called pawn" << endl; // debug
-        Pawn piece(color);
-        vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int,
-        int>(iOld, jOld)); for (unsigned int i = 0; i < list.size(); i++) {
-            if (list.at(i) == tuple<int, int>(iNew, jNew)) {
-                cout << "good move for a pawn" << endl; // debug
-                recognized += 1;
-            }
-        }
-        valid = recognized;
-        if (valid == 0) {
-            cout << "bad move for a pawn" << endl; // debug
-            return valid;
-        }
-    }break;
+//     case 'P': {
+//         bool recognized = 0;
+//         cout << "called pawn" << endl; // debug
+//         Pawn piece(color);
+//         vector<tuple<int, int>> list = piece.possibleMoves(board, tuple<int,
+//         int>(iOld, jOld)); for (unsigned int i = 0; i < list.size(); i++) {
+//             if (list.at(i) == tuple<int, int>(iNew, jNew)) {
+//                 cout << "good move for a pawn" << endl; // debug
+//                 recognized += 1;
+//             }
+//         }
+//         valid = recognized;
+//         if (valid == 0) {
+//             cout << "bad move for a pawn" << endl; // debug
+//             return valid;
+//         }
+//     }break;
 
   default: {
     valid = 1;

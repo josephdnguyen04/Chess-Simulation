@@ -58,7 +58,7 @@ int main() {
       cout << endl;
       printBoard(board);
     }
-    cout << "White to move: "; // p1's turn
+    cout << white() << "White to move: " << resetColor(); // p1's turn
     if (p1 == "Computer 1" || p1 == "Computer") {
       comTurn(board, "white");
     } else {
@@ -72,7 +72,7 @@ int main() {
       cout << endl;
       printBoard(board);
     };
-    cout << "Black to move: "; // p2's turn
+    cout << red() << "Black to move: " << resetColor(); // p2's turn
     if (p2 == "Computer 2" || p2 == "Computer") {
       comTurn(board, "black");
     } else {

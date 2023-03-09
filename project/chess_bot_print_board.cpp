@@ -21,12 +21,12 @@ void printBoard(const vector<vector<string>> &board) {
         string color;
         if (board.at(num - 1).at(j).at(0) == 'w') {
             color = white();
-        } if (board.at(num - 1).at(j).at(0) == 'b') {
+        } else if (board.at(num - 1).at(j).at(0) == 'b') {
             color = red();
         } else {
             color = boardColor;
         }
-      cout << board.at(num - 1).at(j) << grey() << "|";
+      cout << color << board.at(num - 1).at(j) << grey() << "|";
     }
     cout << endl;
     cout << "   -- -- -- -- -- -- -- --" << endl;
