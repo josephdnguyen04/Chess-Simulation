@@ -198,17 +198,54 @@ Pawn::possibleMoves(std::vector<std::vector<string>> board,
   vector<tuple<int, int>> moves;
   int row = get<0>(current_cell);
   int col = get<1>(current_cell);
+  int column_change[2] = {-1,1};
 
-  if self.team:
-        if row == 6:
-            if current_board[current_cell+(8*direction)] == "empty":
-                if current_board[current_cell+(16*direction)] == "empty":
-                    moves.append(current_cell+(16*direction))
-        else:
-            if row == 1:
-                if current_board[current_cell+8*direction] == "empty":
-                    if current_board[current_cell+(16*direction)] == "empty":
-                        moves.append(current_cell+(16*direction))
+
+  // PAWN CAN TAKE TO THE SIDES
+
+  for (auto i : column_change) {
+      if (team == "white"){
+          if (board.at(row+1).at(col+i) != "  "){
+              if (board.at(row+1).at(col+i).at(0) != team.at(0)){
+                  moves.push_back(make_tuple(row+1,col+i));
+              }
+          }
+      }else {
+          if (board.at(row-1).at(col+i) != "  "){
+              if (board.at(row-1).at(col+i).at(0) != team.at(0)){
+                  moves.push_back(make_tuple(row-1,col+i));
+              }
+          }
+      }
+  }
+
+  // MOVES ONE TILE FOWARD
+  if (team == "white") {
+      if (board.at(row+1).at(col) == "  "){
+          moves.push_back(make_tuple(row+1,col));
+      }
+  }else {
+      if (board.at(row-1).at(col) == "  "){
+          moves.push_back(make_tuple(row-1,col));
+      }
+  }
+
+  // IF FIRST MOVE THEN CAN MOVE TWICE
+  if (team == "white") {
+        if (row == 1) {
+            if (board.at(row+1).at(col) == "  "){
+                if (board.at(row+2).at(col) == "  ") {
+                    moves.push_back(make_tuple(row+2,col));
+                }
+            }                    
+        }
+  } else {
+        if (row == 6) {
+            if (board.at(row-1).at(col) == "  ")
+                if (board.at(row-2).at(col) == "  ")
+                    moves.push_back(make_tuple(row-2,col));
+        }
+  }
 
   return moves;
 }
