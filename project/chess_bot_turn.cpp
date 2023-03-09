@@ -6,12 +6,20 @@ using namespace std;
 
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
                int iNew, int jNew, string color) {
-  bool debug = 0;
+  bool debug = 1;
   bool valid = 1;
   // nobody can move a piece from an empty space
   if (board.at(iOld).at(jOld) == "  ") {
     if (debug) { // debug
-      cout << "There was no piece there" << endl;
+      cout << "There is no piece there" << endl;
+    }
+    valid = 0;
+    return valid;
+  }
+  // players cannot put the piece back where it just was
+  if (color != "neutral" && iOld == iNew && jOld == jNew) {
+    if (debug) { // debug
+      cout << "You cannot place a piece back where it just was" << endl;
     }
     valid = 0;
     return valid;
@@ -19,7 +27,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
   // white cannot move anything but white pieces
   if (color == "white" && board.at(iOld).at(jOld).at(0) != 'w') {
     if (debug) { // debug
-      cout << "That piece was not your color" << endl;
+      cout << "That piece is not your color" << endl;
     }
     valid = 0;
     return valid;
@@ -27,7 +35,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
   // black cannot move anything but black pieces
   if (color == "black" && board.at(iOld).at(jOld).at(0) != 'b') {
     if (debug) { // debug
-      cout << "That piece was not your color" << endl;
+      cout << "That piece is not your color" << endl;
     }
     valid = 0;
     return valid;
@@ -56,7 +64,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
     for (unsigned int i = 0; i < list.size(); i++) {
       if (list.at(i) == tuple<int, int>(iNew, jNew)) {
         if (debug) { // debug
-          cout << "good move for a king" << endl;
+          cout << color << " moved a king" << endl;
         }
         recognized += 1;
       }
@@ -81,7 +89,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
     for (unsigned int i = 0; i < list.size(); i++) {
       if (list.at(i) == tuple<int, int>(iNew, jNew)) {
         if (debug) { // debug
-          cout << "good move for a queen" << endl;
+          cout << color << " moved a queen" << endl;
         }
         recognized += 1;
       }
@@ -106,7 +114,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
     for (unsigned int i = 0; i < list.size(); i++) {
       if (list.at(i) == tuple<int, int>(iNew, jNew)) {
         if (debug) { // debug
-          cout << "good move for a rook" << endl;
+          cout << color << " moved a rook" << endl;
         }
         recognized += 1;
       }
@@ -128,7 +136,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
     for (unsigned int i = 0; i < list.size(); i++) {
       if (list.at(i) == tuple<int, int>(iNew, jNew)) {
         if (debug) { // debug
-          cout << "good move for a knight" << endl;
+          cout << color << " moved a knight" << endl;
         }
         recognized += 1;
       }
@@ -150,7 +158,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
     for (unsigned int i = 0; i < list.size(); i++) {
       if (list.at(i) == tuple<int, int>(iNew, jNew)) {
         if (debug) { // debug
-          cout << "good move for a bishop" << endl;
+          cout << color << " moved a bishop" << endl;
         }
         recognized += 1;
       }
@@ -176,7 +184,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
       }
       if (list.at(i) == tuple<int, int>(iNew, jNew)) {
         if (debug) { // debug
-          cout << "good move for a pawn" << endl;
+          cout << color << " moved a pawn" << endl;
         }
         recognized += 1;
       }
@@ -196,6 +204,9 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
     }
     valid = 1;
   }
+  }
+  if (debug && !valid) { // debug
+    cout << "That was not a legal move, please try again" << endl;
   }
   return valid;
 }
@@ -223,31 +234,63 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
           tolower(request.at(stringIndex)) == 'x') {
         request.erase(request.begin() + stringIndex);
       } else {
+        request.at(stringIndex) =
+            tolower(request.at(stringIndex)); // if a letter, make it lowercase
         stringIndex++;
       }
     }
     // check if valid
     // make sure there are at least four characters in request
-    if (request.size() < 4) {
+    switch (request.size()) {
+    case 0: {
+      cout << "Sorry, I don't recognize that entry" << endl; // debug
       valid = false;
       continue;
     }
-    // make sure that request is alpha-digit-alpha-digit
-    if (isalpha(request.at(0)) && isdigit(request.at(1)) &&
-        isalpha(request.at(2)) && isdigit(request.at(3))) {
-      request.at(0) = tolower(request.at(0)); // ignore capitol letters
-      request.at(2) = tolower(request.at(2));
-    } else {
+    case 1: {
+      cout << "Sorry, I don't recognize that entry" << endl; // debug
       valid = false;
       continue;
     }
-    // make sure each character of request is in range of an 8x8 board
-    if ((request.at(0) < 'a') || (request.at(0) > 'h') ||
-        (request.at(2) < 'a') || (request.at(2) > 'h') ||
-        (request.at(1) < '1') || (request.at(1) > '8') ||
-        (request.at(3) < '1') || (request.at(3) > '8')) {
+    case 2: {
+      cout << "2 long" << endl; // debug
       valid = false;
       continue;
+    }
+    case 3: {
+      cout << "3 long" << endl; // debug
+      valid = false;
+      continue;
+    }
+    case 4: {
+      cout << "4 long" << endl; // debug
+      // make sure that request is alpha-digit-alpha-digit
+      if (!(isalpha(request.at(0)) && isdigit(request.at(1)) &&
+            isalpha(request.at(2)) && isdigit(request.at(3)))) {
+        cout << "not a#a#" << endl; // debug
+        valid = false;
+        continue;
+      }
+      // make sure each character of request is in range of an 8x8 board
+      if ((request.at(0) < 'a') || (request.at(0) > 'h') ||
+          (request.at(2) < 'a') || (request.at(2) > 'h') ||
+          (request.at(1) < '1') || (request.at(1) > '8') ||
+          (request.at(3) < '1') || (request.at(3) > '8')) {
+        valid = false;
+        continue;
+      }
+      break;
+    }
+    case 5: {
+      cout << "5 long" << endl; // debug
+      valid = false;
+      continue;
+    }
+    default: {
+      cout << "Too many characters" << endl; // debug
+      valid = false;
+      continue;
+    }
     }
   } while (!valid);
   jOld = static_cast<int>(request.at(0)) - 97;
@@ -286,8 +329,6 @@ void takeTurn(vector<vector<string>> &board, string color) {
       string piece = board.at(get<0>(initial)).at(get<1>(initial));
       board.at(get<0>(initial)).at(get<1>(initial)) = "  ";
       board.at(get<0>(finale)).at(get<1>(finale)) = piece;
-    } else {
-      cout << "That was not a legal move." << endl;
     }
   } while (!legalMove);
 }
