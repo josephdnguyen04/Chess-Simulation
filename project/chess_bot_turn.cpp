@@ -28,6 +28,7 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
   // players cannot capture their own color (exception for color == "neutral")
   if (color != "neutral" &&
       board.at(iOld).at(jOld).at(0) == board.at(iNew).at(jNew).at(0)) {
+    cout << "You cannot capture a piece on your team" << endl;
     valid = 0;
     return valid;
   }
