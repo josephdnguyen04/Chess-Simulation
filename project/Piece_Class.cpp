@@ -196,6 +196,19 @@ std::vector<std::tuple<int, int>>
 Pawn::possibleMoves(std::vector<std::vector<string>> board,
                     std::tuple<int, int> current_cell) {
   vector<tuple<int, int>> moves;
+  int row = get<0>(current_cell);
+  int col = get<1>(current_cell);
+
+  if self.team:
+        if row == 6:
+            if current_board[current_cell+(8*direction)] == "empty":
+                if current_board[current_cell+(16*direction)] == "empty":
+                    moves.append(current_cell+(16*direction))
+        else:
+            if row == 1:
+                if current_board[current_cell+8*direction] == "empty":
+                    if current_board[current_cell+(16*direction)] == "empty":
+                        moves.append(current_cell+(16*direction))
 
   return moves;
 }
