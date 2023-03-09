@@ -39,9 +39,9 @@ int main() {
   board.at(7).at(7) = "bR"; // black rook
 
     int num = 8;
-    for (int i  = board.size()-1; i >= 0; i--, num--) {
+    for (unsigned int i  = 7; i >= 0; i--, num--) {
         cout << num << " |";
-        for (int j = 0; j < board.at(i).size(); j++) {
+        for (unsigned int j = 0; j < 8; j++) {
             cout << board.at(i).at(j) << "|";
         }
         cout << endl;

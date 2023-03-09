@@ -18,10 +18,10 @@ private:
   string name = "pawn";
 
   // TRUE = WHITE and FALSE = BLACK
-  bool team;
+  string team;
 
 public:
-  Pawn(bool team);
+  Pawn(string team);
 };
 
 class Knight {
@@ -30,10 +30,10 @@ private:
   string name = "knight";
 
   // TRUE = WHITE and FALSE = BLACK
-  bool team;
+  string team;
 
 public:
-  Knight(bool team);
+  Knight(string team);
   std::vector<std::tuple<int, int>>
   possibleMoves(std::vector<std::vector<string>> board,
                 std::tuple<int, int> current_cell);
@@ -45,10 +45,10 @@ private:
   string name = "bishop";
 
   // TRUE = WHITE and FALSE = BLACK
-  bool team;
+  string team;
 
 public:
-  Bishop(bool team);
+  Bishop(string team);
 
   std::vector<std::tuple<int, int>>
   possibleMoves(std::vector<std::vector<string>> board,
@@ -61,10 +61,10 @@ private:
   string name = "queen";
 
   // TRUE = WHITE and FALSE = BLACK
-  bool team;
+  string team;
 
 public:
-  Queen(bool team);
+  Queen(string team);
 
   std::vector<std::tuple<int, int>>
   possibleMoves(std::vector<std::vector<string>> board,
@@ -77,10 +77,10 @@ private:
   string name = "king";
 
   // TRUE = WHITE and FALSE = BLACK
-  bool team;
+  string team;
 
 public:
-  King(bool team);
+  King(string team);
 
   std::vector<std::tuple<int, int>>
   possibleMoves(std::vector<std::vector<string>> board,
@@ -93,10 +93,10 @@ private:
   string name = "rook";
 
   // TRUE = WHITE and FALSE = BLACK
-  bool team;
+  string team;
 
 public:
-  Rook(bool team);
+  Rook(string team);
 
   std::vector<std::tuple<int, int>>
   possibleMoves(std::vector<std::vector<string>> board,

@@ -33,13 +33,13 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
   // check pieces
   if (board.at(iOld).at(jOld).at(1) == 'K') {
     cout << "called king" << endl; // debug
-    King piece(color == "white");
+    King piece("white");
     vector<tuple<int, int>> list =
         piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
     cout << list.size() << endl; //debug
     bool recognized = 0;
     for (int i = 0; i < list.size(); i++) {
-      if (list.at(i) == tuple<int, int>(iOld, jOld)) {
+      if (list.at(i) == tuple<int, int>(iNew, jNew)) {
         cout << "good move for a king" << endl; // debug
         recognized += 1;
       } else {

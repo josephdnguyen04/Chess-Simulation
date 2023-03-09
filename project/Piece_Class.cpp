@@ -6,20 +6,33 @@ using namespace std;
 
 // DEFINITIONS FOR THE KNIGHT
 
-Knight::Knight(bool team) { this->team = team; };
+Knight::Knight(string team) { this->team = team; };
 
 vector<tuple<int, int>> Knight::possibleMoves(vector<vector<string>> board,
                                               tuple<int, int> current_cell) {
   vector<tuple<int, int>> moves;
   int row = get<0>(current_cell);
   int col = get<1>(current_cell);
+  int array[4] = {-2,-1,1,2};
+
+  for (auto aa : array) {
+      for (auto bb : array) {
+            if (aa == bb || aa + bb == 0)
+                continue;
+            int x = row + aa;
+            int y = col + bb;
+            if ((x >= 0) && (x <= 7) && (y >= 0) && (y <= 7)) {
+                moves.push_back(make_tuple(x,y));
+            }
+      }
+  }
 
   return moves;
 }
 
 // DEFINITIONS FOR THE ROOK
 
-Rook::Rook(bool team) { this->team = team; };
+Rook::Rook(string team) { this->team = team; };
 
 vector<tuple<int, int>> Rook::possibleMoves(vector<vector<string>> board,
                                             tuple<int, int> current_cell) {
@@ -35,7 +48,7 @@ vector<tuple<int, int>> Rook::possibleMoves(vector<vector<string>> board,
       int x = row + aa;
       int y = col + bb;
 
-      while ((0 <= x) && (x >= 7) && (0 <= y) && (y <= 7)) {
+      while ((x >= 0) && (x <= 7) && (y >= 0) && (y <= 7)) {
         // IMPLEMENT ERROR CHECKING
         moves.push_back(make_tuple(x, y));
         x += aa;
@@ -49,7 +62,7 @@ vector<tuple<int, int>> Rook::possibleMoves(vector<vector<string>> board,
 
 // DEFINITIONS FOR THE BISHOP
 
-Bishop::Bishop(bool team) { this->team = team; };
+Bishop::Bishop(string team) { this->team = team; };
 
 std::vector<std::tuple<int, int>>
 Bishop::possibleMoves(std::vector<std::vector<string>> board,
@@ -64,7 +77,7 @@ Bishop::possibleMoves(std::vector<std::vector<string>> board,
       int x = row + aa;
       int y = col + bb;
 
-      while ((0 <= x) && (x >= 7) && (0 <= y) && (y <= 7)) {
+      while ((x >= 0) && (x <= 7) && (y >= 0) && (y <= 7)) {
         // CHECK FOR ERRORS
         moves.push_back(make_tuple(x, y));
         x += aa;
@@ -77,7 +90,7 @@ Bishop::possibleMoves(std::vector<std::vector<string>> board,
 
 // DEFINITIONS FOR THE QUEEN
 
-Queen::Queen(bool team) { this->team = team; };
+Queen::Queen(string team) { this->team = team; };
 
 std::vector<std::tuple<int, int>>
 Queen::possibleMoves(std::vector<std::vector<string>> board,
@@ -89,12 +102,12 @@ Queen::possibleMoves(std::vector<std::vector<string>> board,
 
   for (auto aa : array) {
     for (auto bb : array) {
-      if (aa == bb)
+      if (aa == 0 && bb == 0)
         continue;
       int x = row + aa;
       int y = col + bb;
 
-      while ((0 <= x) && (x >= 7) && (0 <= y) && (y <= 7)) {
+      while ((x >= 0) && (x <= 7) && (y >= 0) && (y <= 7)) {
         // IMPLEMENT ERROR CHECKING
         moves.push_back(make_tuple(x, y));
         x += aa;
@@ -108,7 +121,7 @@ Queen::possibleMoves(std::vector<std::vector<string>> board,
 
 // DEFINITIONS FOR THE KING
 
-King::King(bool team) { this->team = team; };
+King::King(string team) { this->team = team; };
 
 std::vector<std::tuple<int, int>>
 King::possibleMoves(std::vector<std::vector<string>> board,
@@ -120,16 +133,14 @@ King::possibleMoves(std::vector<std::vector<string>> board,
 
   for (auto aa : array) {
     for (auto bb : array) {
-      if (aa == bb)
+      if (aa == 0 && bb == 0)
         continue;
       int x = row + aa;
       int y = col + bb;
-      for (int i = 0; i <= 1; i++) {
-        if ((0 <= x) && (x >= 7) && (0 <= y) && (y <= 7)) {
-          // IMPLEMENT ERROR CHECKING
-          moves.push_back(make_tuple(x, y));
+      if ((x >= 0) && (x <= 7) && (y >= 0) && (y <= 7)) {
+        // IMPLEMENT ERROR CHECKING
+        moves.push_back(make_tuple(x, y));
         }
-      }
     }
   }
 
@@ -138,4 +149,4 @@ King::possibleMoves(std::vector<std::vector<string>> board,
 
 // DEFINITIONS FOR THE PAWN
 
-Pawn::Pawn(bool team) { this->team = team; };
+Pawn::Pawn(string team) { this->team = team; };
