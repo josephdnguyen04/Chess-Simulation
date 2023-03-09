@@ -150,3 +150,12 @@ King::possibleMoves(std::vector<std::vector<string>> board,
 // DEFINITIONS FOR THE PAWN
 
 Pawn::Pawn(string team) { this->team = team; };
+
+std::vector<std::tuple<int, int>>
+Pawn::possibleMoves(std::vector<std::vector<string>> board,
+                std::tuple<int, int> current_cell)
+{
+    vector<tuple<int, int>> moves;
+    
+    return moves;
+}

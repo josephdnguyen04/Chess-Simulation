@@ -22,6 +22,10 @@ private:
 
 public:
   Pawn(string team);
+  
+  std::vector<std::tuple<int, int>>
+  possibleMoves(std::vector<std::vector<string>> board,
+                std::tuple<int, int> current_cell);
 };
 
 class Knight {
