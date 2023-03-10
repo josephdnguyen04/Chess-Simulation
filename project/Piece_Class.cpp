@@ -249,6 +249,5 @@ Pawn::possibleMoves(std::vector<std::vector<string>> board,
       }
     }
   }
-  cout << moves.size() << "  size" << endl;
   return moves;
 }
