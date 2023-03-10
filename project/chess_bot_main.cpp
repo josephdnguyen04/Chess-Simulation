@@ -3,7 +3,7 @@
 // https://iopscience.iop.org/article/10.1088/1742-6596/1195/1/012013/pdf
 
 int main() {
-    cout << resetColor();
+  cout << resetColor();
   vector<vector<string>> board = makeBoard();
   int numPlayers;
   char playerColor = 'n'; // 'w' for white and 'b' for black
@@ -12,6 +12,7 @@ int main() {
   string p1 = "Player 1";
   string p2 = "Player 2";
   bool visibleBoard = 1; // 0 for invisible board; 1 for visible board
+  bool stepByStep = 0;
   srand(1);
 
   cout << "Welcome to Chess." << endl;
@@ -31,6 +32,15 @@ int main() {
   if (numPlayers == 0) { // 0 players; 2 computers
     p1 = "Computer 1";
     p2 = "Computer 2";
+    string response;
+    do {
+      cout << "Would you like to see individual computer turns (y/n)?" << endl;
+      getline(cin, response);
+      for (unsigned int i = 0; i < response.size(); i++) {
+        response.at(i) = tolower(response.at(i));
+      }
+    } while (!response.size());
+    stepByStep = (response.at(0) == 'y');
   }
   if (numPlayers == 1) { // 1 player; option of white or black
     do {
@@ -51,12 +61,16 @@ int main() {
   cin.ignore(1000, '\n');
 
   // main turn loop
-  while (!victory && turn <= 1000) { // debug, no turn limit
+  while (!victory && turn <= 10000) { // debug, no turn limit
     turn++;
     cout << endl << "Turn: " << turn << endl; // print turn #
     if (visibleBoard) {                       // print initial board
       cout << endl;
       printBoard(board);
+    }
+    if (stepByStep) {
+      string junk;
+      getline(cin, junk);
     }
     cout << white() << "White to move: " << resetColor(); // p1's turn
     if (p1 == "Computer 1" || p1 == "Computer") {
@@ -72,6 +86,10 @@ int main() {
       cout << endl;
       printBoard(board);
     };
+    if (stepByStep) {
+      string junk;
+      getline(cin, junk);
+    }
     cout << red() << "Black to move: " << resetColor(); // p2's turn
     if (p2 == "Computer 2" || p2 == "Computer") {
       comTurn(board, "black");
@@ -105,6 +123,6 @@ int main() {
   default:
     cout << "Error: inocorrect ending" << endl;
   }
-cout << resetColor();
+  cout << resetColor();
   return 0;
 }
