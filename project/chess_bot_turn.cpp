@@ -242,17 +242,16 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
     // make sure there are at least four characters in request
     switch (request.size()) {
     case 0: {
-      cout << "Sorry, I don't recognize that entry" << endl; // debug
+      cout << "Sorry, I don't recognize that entry" << endl;
       valid = false;
       continue;
     }
     case 1: {
-      cout << "Sorry, I don't recognize that entry" << endl; // debug
+      cout << "Sorry, I don't recognize that entry" << endl;
       valid = false;
       continue;
     }
     case 2: {
-      cout << "2 long" << endl; // debug
       if (!(isalpha(request.at(0)) && isdigit(request.at(1)))) {
         valid = false;
         continue;
@@ -269,8 +268,6 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
         continue;
       }
       request = start + request;
-      cout << "request: " << request << endl; // debug
-      cout << request.size() << endl; //debug
       continue;
     }
     case 3: {
@@ -302,16 +299,13 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
       }
     }
     case 5: {
-      cout << "5 long" << endl; // debug
       valid = false;
       continue;
     }
     case 4: {
-      cout << "4 long" << endl; // debug
       // make sure that request is alpha-digit-alpha-digit
       if (!(isalpha(request.at(0)) && isdigit(request.at(1)) &&
             isalpha(request.at(2)) && isdigit(request.at(3)))) {
-        cout << "not a#a#" << endl; // debug
         valid = false;
         continue;
       }
@@ -326,7 +320,7 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
       break;
     }
     default: {
-      cout << "Too many characters" << endl; // debug
+      cout << "Too many characters" << endl;
       valid = false;
       continue;
     }
