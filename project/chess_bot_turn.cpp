@@ -270,7 +270,7 @@ void moveRequest(int &iOld, int &jOld, int &iNew, int &jNew) {
       }
       request = start + request;
       cout << "request: " << request << endl; // debug
-      cout << request.size() << endl; //debug
+      cout << request.size() << endl;         // debug
       continue;
     }
     case 3: {

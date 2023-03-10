@@ -44,6 +44,10 @@ int checkEndGame(const vector<vector<string>> &board);
 // returns 2 if player 2 (black) won
 // returns 3 if the game is a draw
 
+// goes trhough the board and checks if any king is in check
+// returns...
+bool isCheck(vector<vector<string>> board);
+
 // valid move takes the board as a parameter along with coordinates for the old
 // point and coordinates for the new point
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
