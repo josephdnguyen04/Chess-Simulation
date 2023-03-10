@@ -19,14 +19,15 @@ int main() {
 
   // get number of players
   cout << "How many players are there? ";
-  cin >> numPlayers;
+  string junk;
+  getline(cin, junk);
+  numPlayers = static_cast<int>(junk.at(0));
+  cout << "number of players: " << numPlayers << endl;
   while (!(numPlayers == 0 || numPlayers == 1 || numPlayers == 2) ||
          !cin.good()) {
     cout << "Sorry, that is an invalid number of players." << endl;
     cout << "Please enter an integer from 0 to 2." << endl;
     cout << "How many players are there? ";
-    cin.clear();
-    cin.ignore(10000, '\n');
     cin >> numPlayers;
   }
   if (numPlayers == 0) { // 0 players; 2 computers
@@ -36,16 +37,17 @@ int main() {
     do {
       cout << "Would you like to see individual computer turns (y/n)?" << endl;
       getline(cin, response);
+      cout << "Debug response: " << response << endl; //debug
       for (unsigned int i = 0; i < response.size(); i++) {
         response.at(i) = tolower(response.at(i));
       }
+      cout << "response size: " << response.size() << endl; //debug
     } while (!response.size());
     stepByStep = (response.at(0) == 'y');
+    cout << "step by step " << stepByStep << endl; //debug
   }
   if (numPlayers == 1) { // 1 player; option of white or black
     do {
-      cin.clear();
-      cin.ignore(10000, '\n');
       string temp;
       cout << "Do you want to be white or black? ";
       cin >> temp;
@@ -58,7 +60,6 @@ int main() {
       p1 = "Computer";
     }
   }
-  cin.ignore(1000, '\n');
 
   // main turn loop
   while (!victory && turn <= 10000) { // debug, no turn limit
