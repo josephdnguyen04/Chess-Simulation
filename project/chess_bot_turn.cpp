@@ -401,29 +401,29 @@ void promotion(vector<vector<string>> &board, string color) {
         printBoard(board);
         string response;
         bool validResponse = 0;
-        char promotion;
-        cout << "To what would you like to promote the pawn at "
-             << static_cast<char>(j + 97) << static_cast<char>(i + 49) << "?"
-             << endl;
         do {
+          cout << "To what would you like to promote the pawn at "
+               << static_cast<char>(j + 97) << static_cast<char>(i + 49) << "?"
+               << endl;
           getline(cin, response);
           if (!response.size()) {
             break;
           }
-          promotion = toupper(response.at(0));
-          switch (promotion) {
+          switch (toupper(response.at(0))) {
           case 'Q':
           case 'B':
           case 'N':
           case 'R': {
-            board.at(i).at(j).at(1) = promotion;
+            board.at(i).at(j).at(1) = toupper(response.at(0));
             validResponse = 1;
             break;
           }
           case 'K': {
             if (response.size() >= 2) {
               if (toupper(response.at(1)) == 'N') {
-                promotion = 'N';
+                board.at(i).at(j).at(1) = toupper(response.at(0));
+                validResponse = 1;
+                break;
               }
             }
           }
@@ -431,7 +431,10 @@ void promotion(vector<vector<string>> &board, string color) {
             validResponse = 0;
           }
           }
-        } while (validResponse);
+          if (!validResponse) {
+            cout << "Not a valid promotion" << endl;
+          }
+        } while (!validResponse);
       }
     }
   }
