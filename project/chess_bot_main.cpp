@@ -59,8 +59,10 @@ int main() {
   }
 
   // main turn loop
-  cin.clear();
-  cin.ignore(1000, '\n');
+  if (numPlayers != 2) {
+    cin.clear();
+    cin.ignore(1000, '\n');
+  }
   while (!victory && turn <= 10000) { // turn limit to prevent infinite loops
     turn++;
     cout << endl << "Turn: " << turn << endl; // print turn #
@@ -98,7 +100,7 @@ int main() {
       comTurn(board, "black");
     } else {
       takeTurn(board, "black");
-            promotion(board, "black");
+      promotion(board, "black");
     }
     victory = checkEndGame(board);
     cout << "____________________________________" << endl;

@@ -392,11 +392,14 @@ void comTurn(vector<vector<string>> &board, string color) {
 }
 
 void promotion(vector<vector<string>> &board, string color) {
-  for (int i = 0; i < board.size(); i += (board.size() - 1)) {
+  cout << "in promotion at the top" << endl; // debug
+  for (unsigned int i = 0; i < board.size(); i += (board.size() - 1)) {
     for (unsigned int j = 0; j < board.at(i).size(); j++) {
       if (board.at(i).at(j).at(0) == color.at(0) &&
           board.at(i).at(j).at(1) == 'P') {
-        string response = 0;
+        cout << "found a pawn" << endl; // debug
+        printBoard(board);
+        string response;
         bool validResponse = 0;
         char promotion;
         cout << "To what would you like to promote the pawn at "
@@ -413,7 +416,9 @@ void promotion(vector<vector<string>> &board, string color) {
           case 'B':
           case 'N':
           case 'R': {
-            promotion = response.at(1);
+            board.at(i).at(j).at(1) = promotion;
+            validResponse = 1;
+            break;
           }
           case 'K': {
             if (response.size() >= 2) {
