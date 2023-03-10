@@ -62,6 +62,7 @@ void printcheck(vector<vector<string>> board);
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
                int iNew, int jNew, string color = "neutral", bool debug = 1);
 
+void promotion(vector<vector<string>> & board, string color);
 // color functions
 string grey();
 string red();

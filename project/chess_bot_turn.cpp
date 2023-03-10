@@ -392,30 +392,41 @@ void comTurn(vector<vector<string>> &board, string color) {
 }
 
 void promotion(vector<vector<string>> &board, string color) {
-  for (int i = 0; i < board.size(); i += board.size() - 1) {
-    for (unsigned int j = 0; j < board.at(7).size(); j++) {
-      if (board.at(7).at(j).at(0) == color.at(0)) {
-          string response;
-          bool validResponse = 0;
-          char promotion;
+  for (int i = 0; i < board.size(); i += (board.size() - 1)) {
+    for (unsigned int j = 0; j < board.at(i).size(); j++) {
+      if (board.at(i).at(j).at(0) == color.at(0) &&
+          board.at(i).at(j).at(1) == 'P') {
+        string response = 0;
+        bool validResponse = 0;
+        char promotion;
         cout << "To what would you like to promote the pawn at "
-             << static_cast<char>(j + 48) << static_cast<char>(i + 48) << "?"
+             << static_cast<char>(j + 97) << static_cast<char>(i + 49) << "?"
              << endl;
-             do {
-getline(cin, response);
-if (!response.size()) {
-    break;
-}
-promotion = toupper(response.at(0));
-switch (promotion) {
-    case 'Q':
-    case 'B':
-    case 'N':
-    case 'R':
-    
-}
-             } while(validResponse);
-
+        do {
+          getline(cin, response);
+          if (!response.size()) {
+            break;
+          }
+          promotion = toupper(response.at(0));
+          switch (promotion) {
+          case 'Q':
+          case 'B':
+          case 'N':
+          case 'R': {
+            promotion = response.at(1);
+          }
+          case 'K': {
+            if (response.size() >= 2) {
+              if (toupper(response.at(1)) == 'N') {
+                promotion = 'N';
+              }
+            }
+          }
+          default: {
+            validResponse = 0;
+          }
+          }
+        } while (validResponse);
       }
     }
   }

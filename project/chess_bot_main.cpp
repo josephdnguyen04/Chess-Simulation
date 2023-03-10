@@ -78,6 +78,7 @@ int main() {
       comTurn(board, "white");
     } else {
       takeTurn(board, "white");
+      promotion(board, "white");
     }
     victory = checkEndGame(board);
     if (victory) {
@@ -97,6 +98,7 @@ int main() {
       comTurn(board, "black");
     } else {
       takeTurn(board, "black");
+            promotion(board, "black");
     }
     victory = checkEndGame(board);
     cout << "____________________________________" << endl;
