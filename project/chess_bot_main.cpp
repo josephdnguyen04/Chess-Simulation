@@ -21,7 +21,7 @@ int main() {
   cout << "How many players are there? ";
   string junk;
   getline(cin, junk);
-  numPlayers = static_cast<int>(junk.at(0));
+  numPlayers = static_cast<int>(junk.at(0)) - 48;
   cout << "number of players: " << numPlayers << endl;
   while (!(numPlayers == 0 || numPlayers == 1 || numPlayers == 2) ||
          !cin.good()) {
