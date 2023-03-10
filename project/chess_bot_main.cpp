@@ -72,6 +72,7 @@ int main() {
       string junk;
       getline(cin, junk);
     }
+    printcheck(board);
     cout << white() << "White to move: " << resetColor(); // p1's turn
     if (p1 == "Computer 1" || p1 == "Computer") {
       comTurn(board, "white");
@@ -90,6 +91,7 @@ int main() {
       string junk;
       getline(cin, junk);
     }
+    printcheck(board);
     cout << red() << "Black to move: " << resetColor(); // p2's turn
     if (p2 == "Computer 2" || p2 == "Computer") {
       comTurn(board, "black");

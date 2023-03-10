@@ -55,6 +55,8 @@ int isCheck(vector<vector<string>> board);
 // for the piece that you gave the string for
 vector<tuple<int,int>> getmoves(std::vector<std::vector<string>> board,tuple<int, int> current_cell, string piece);
 
+void printcheck(vector<vector<string>> board);
+
 // valid move takes the board as a parameter along with coordinates for the old
 // point and coordinates for the new point
 bool validMove(const vector<vector<string>> &board, int iOld, int jOld,

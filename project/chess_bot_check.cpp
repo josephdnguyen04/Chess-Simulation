@@ -86,3 +86,20 @@ int isCheck(vector<vector<string>> board) {
 
   return check;
 }
+
+void printcheck(vector<vector<string>> board) {
+  switch (isCheck(board)) {
+  case 1: {
+    cout << "white is in CHECK\n";
+  } break;
+  case 2: {
+    cout << "black is in CHECK\n";
+  } break;
+  case 3: {
+    cout << "Black and White are in CHECK\n";
+  } break;
+  case 0:
+  default:
+    break;
+  }
+}
