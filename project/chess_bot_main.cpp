@@ -37,14 +37,11 @@ int main() {
     do {
       cout << "Would you like to see individual computer turns (y/n)?" << endl;
       getline(cin, response);
-      cout << "Debug response: " << response << endl; //debug
       for (unsigned int i = 0; i < response.size(); i++) {
         response.at(i) = tolower(response.at(i));
       }
-      cout << "response size: " << response.size() << endl; //debug
     } while (!response.size());
     stepByStep = (response.at(0) == 'y');
-    cout << "step by step " << stepByStep << endl; //debug
   }
   if (numPlayers == 1) { // 1 player; option of white or black
     do {
@@ -62,7 +59,9 @@ int main() {
   }
 
   // main turn loop
-  while (!victory && turn <= 10000) { // debug, no turn limit
+  cin.clear();
+  cin.ignore(1000, '\n');
+  while (!victory && turn <= 10000) { // turn limit to prevent infinite loops
     turn++;
     cout << endl << "Turn: " << turn << endl; // print turn #
     if (visibleBoard) {                       // print initial board
