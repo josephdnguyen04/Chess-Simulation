@@ -54,9 +54,6 @@ bool validMove(const vector<vector<string>> &board, int iOld, int jOld,
   switch (board.at(iOld).at(jOld).at(1)) {
   case 'K': {
     bool recognized = 0;
-    if (debug) { // debug
-      cout << "called king" << endl;
-    }
     King piece(color);
     vector<tuple<int, int>> list =
         piece.possibleMoves(board, tuple<int, int>(iOld, jOld));
@@ -391,5 +388,35 @@ void comTurn(vector<vector<string>> &board, string color) {
          << static_cast<char>(iNew + 49) << endl;
   } else {
     cout << "That was not a legal move by the computer." << endl;
+  }
+}
+
+void promotion(vector<vector<string>> &board, string color) {
+  for (int i = 0; i < board.size(); i += board.size() - 1) {
+    for (unsigned int j = 0; j < board.at(7).size(); j++) {
+      if (board.at(7).at(j).at(0) == color.at(0)) {
+          string response;
+          bool validResponse = 0;
+          char promotion;
+        cout << "To what would you like to promote the pawn at "
+             << static_cast<char>(j + 48) << static_cast<char>(i + 48) << "?"
+             << endl;
+             do {
+getline(cin, response);
+if (!response.size()) {
+    break;
+}
+promotion = toupper(response.at(0));
+switch (promotion) {
+    case 'Q':
+    case 'B':
+    case 'N':
+    case 'R':
+    
+}
+             } while(validResponse);
+
+      }
+    }
   }
 }
