@@ -45,8 +45,15 @@ int checkEndGame(const vector<vector<string>> &board);
 // returns 3 if the game is a draw
 
 // goes trhough the board and checks if any king is in check
-// returns...
-bool isCheck(vector<vector<string>> board);
+// return 0 no player is in check
+// return 1 white is in check
+// return 2 black is in check
+// return 3 both are in check
+int isCheck(vector<vector<string>> board);
+
+// you give it a string for the piece and return the moves
+// for the piece that you gave the string for
+vector<tuple<int,int>> getmoves(std::vector<std::vector<string>> board,tuple<int, int> current_cell, string piece);
 
 // valid move takes the board as a parameter along with coordinates for the old
 // point and coordinates for the new point
